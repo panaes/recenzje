@@ -331,6 +331,7 @@
    - author:      autor recenzji
    - publication: nazwa czasopisma / publikacji
    - text:        treść recenzji (ocenę wpisz na końcu tekstu)
+   - compilation: true  — dodaj to pole jeśli to składanka
 
    Żeby dodać nową recenzję, skopiuj jeden blok { ... },
    i wklej go przed ostatnim nawiasem ], zmieniając dane.
@@ -364,6 +365,16 @@ const reviews = [
     publication: "Magazyn Klan nr 1 (1997)",
     text: "Album \"Wzgórze Ya-Pa-3\" był pierwszą oficjalnie wydaną płytą hip-hopową w naszym kraju. Na drugi krążek Wzgórza czekali więc wszyscy fani polskiego hip-hopu. Zespół, zdając sobie pewnie sprawę z odpowiedzialności, zdecydował się na zmianę stylu rymowania - nie mówią już o imprezach, a głównie o swojej wyższości jako MC. Po drodze stracili jednak całą autentyczność, w dodatku nie rymują wcale tak dobrze, jak sami mówią. Bardzo często słowa nie znaczą zupełnie nic, razi przestawianie akcentów w wyrazach. Płytę tę trzeba mieć - utwór \"Język polski\", połączenie sił Kalibra 44, Wzgórza i przyjaciół (m.in. Jajonasz i Radoskór), to najlepszy kawałek wydany w tym kraju. Mimo plusów i minusów jest to jak na razie najlepsza polska płyta hip-hopowa. 4,3/5"
   }
+  ,{
+    album: "Polski Rap. Zakazane Piosenki Yo. 3",
+    artist: "Kompilacja",
+    year: 1997,
+    compilation: true,
+    cover: "https://panaes.github.io/recenzje/covers/komp-polski_rap_zakazane_yo3.jpg",
+    author: "MCM",
+    publication: "Magazyn Klan nr 1 (1997)",
+    text: "Wydawnictwa składankowe mają tę zaletę, że po ich przesłuchaniu możemy stwierdzić, których wykonawców warto, a których nie warto kupić. Prezentowane są różne poziomy. Warto zwrócić uwagę na zespoły: Banita, Bom Juices, Slums Attack i nieźle zapowiadający się Tuwandaal. Pozostałym należy życzyć, żeby skoncentrowali się na muzyce, a nie przeklinaniu. \"Yo. 3\" to pozycja, którą warto kupić, aby móc uważnie prześledzić scenę rapową. Na kasecie oprócz wymienionych można usłyszeć: M.F. Hools, Mad Rappaz, The Killers Posse i Stona BMS. Całość trwa 74 minuty, co też nie jest bez znaczenia. 4/5"
+  }
 ];
 
 /* =============================================
@@ -374,7 +385,7 @@ const dateStr = new Date().toLocaleDateString('pl-PL', { year: 'numeric', month:
 document.getElementById('last-update').textContent = dateStr;
 document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-const PL_ALPHA = ['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+const PL_ALPHA = ['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','KOMPILACJE'];
 
 function getKey(str) {
   const first = str.trim()[0];
@@ -410,7 +421,7 @@ function filterAndRender() {
       if (activeFilter.type === 'publication') return r.publication === activeFilter.value;
       if (activeFilter.type === 'artist') return r.artist === activeFilter.value;
     }
-    if (activeLetter) return getKey(r.artist) === activeLetter;
+    if (activeLetter) return activeLetter === 'KOMPILACJE' ? r.compilation === true : getKey(r.artist) === activeLetter;
     if (q) return r.album.toLowerCase().includes(q) || r.artist.toLowerCase().includes(q);
     return false;
   });
@@ -425,18 +436,19 @@ function render() {
 
   const grouped = {};
   filtered.forEach(r => {
-    const k = getKey(r.artist);
+    const k = r.compilation ? 'KOMPILACJE' : getKey(r.artist);
     if (!grouped[k]) grouped[k] = [];
     grouped[k].push(r);
   });
   Object.keys(grouped).forEach(k => grouped[k].sort((a, b) => a.artist.localeCompare(b.artist, 'pl')));
 
-  const allKeys = new Set(reviews.map(r => getKey(r.artist)));
+  const allKeys = new Set(reviews.map(r => r.compilation ? 'KOMPILACJE' : getKey(r.artist)));
 
   sidebar.innerHTML = PL_ALPHA.map(l => {
     const has = allKeys.has(l);
     const label = l === '0-9' ? '0–9' : l;
-    return `<div class="alpha-btn ${has ? 'has-items' : 'disabled'}${activeLetter === l ? ' active' : ''}" ${has ? `onclick="selectLetter('${l}')"` : ''}>${label}</div>`;
+    const wide = l === 'KOMPILACJE' ? ' style="width:auto;padding:0 8px;"' : '';
+    return `<div class="alpha-btn ${has ? 'has-items' : 'disabled'}${activeLetter === l ? ' active' : ''}"${wide} ${has ? `onclick="selectLetter('${l}')"` : ''}>${label}</div>`;
   }).join('');
 
   if (filtered.length === 0) {
