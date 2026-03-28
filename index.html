@@ -300,7 +300,7 @@
 <body>
 
 <header>
-  <h1>Recenzje<br>z <span>Klanu</span></h1>
+  <h1 onclick="goHome()" style="cursor:pointer;">Recenzje<br>z <span>Klanu</span></h1>
   <div class="header-meta">
     Recenzji w bazie: <strong id="total-count">0</strong><br>
     <span>Ostatnia aktualizacja: <strong id="last-update"></strong></span>
@@ -474,6 +474,15 @@ function render() {
       `).join('')}
     </section>
   `).join('');
+}
+
+function goHome() {
+  activeLetter = null;
+  activeFilter = null;
+  document.getElementById('filter-bar').classList.remove('active');
+  document.getElementById('search').value = '';
+  document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+  filterAndRender();
 }
 
 function selectLetter(l) {
