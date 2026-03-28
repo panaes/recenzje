@@ -30,7 +30,6 @@
 
   a { color: inherit; text-decoration: none; }
 
-  /* HEADER */
   header {
     padding: 3rem 2rem 2rem;
     border-bottom: 1px solid var(--border);
@@ -50,9 +49,7 @@
     color: var(--text);
   }
 
-  header h1 span {
-    color: var(--accent);
-  }
+  header h1 span { color: var(--accent); }
 
   .header-meta {
     font-size: 13px;
@@ -65,7 +62,6 @@
     font-weight: 500;
   }
 
-  /* SEARCH */
   .search-wrap {
     padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--border);
@@ -86,19 +82,11 @@
     transition: border-color 0.2s;
   }
 
-  .search-wrap input:focus {
-    border-color: var(--accent2);
-  }
-
+  .search-wrap input:focus { border-color: var(--accent2); }
   .search-wrap input::placeholder { color: var(--muted); }
 
-  /* LAYOUT */
-  .layout {
-    display: flex;
-    position: relative;
-  }
+  .layout { display: flex; position: relative; }
 
-  /* SIDEBAR */
   .alpha-sidebar {
     width: 52px;
     flex-shrink: 0;
@@ -133,38 +121,14 @@
     user-select: none;
   }
 
-  .alpha-btn.has-items {
-    color: var(--text);
-  }
+  .alpha-btn.has-items { color: var(--text); }
+  .alpha-btn.has-items:hover { background: var(--surface2); color: var(--accent); }
+  .alpha-btn.active { background: var(--accent); color: #000; }
+  .alpha-btn.disabled { color: #333; cursor: default; font-size: 10px; }
 
-  .alpha-btn.has-items:hover {
-    background: var(--surface2);
-    color: var(--accent);
-  }
+  .main-content { flex: 1; padding: 2rem; min-width: 0; }
 
-  .alpha-btn.active {
-    background: var(--accent);
-    color: #000;
-  }
-
-  .alpha-btn.disabled {
-    color: #333;
-    cursor: default;
-    font-size: 10px;
-  }
-
-  /* MAIN */
-  .main-content {
-    flex: 1;
-    padding: 2rem;
-    min-width: 0;
-  }
-
-  /* SECTION */
-  .section {
-    margin-bottom: 3rem;
-    scroll-margin-top: 1rem;
-  }
+  .section { margin-bottom: 3rem; scroll-margin-top: 1rem; }
 
   .section-letter {
     font-family: 'DM Serif Display', serif;
@@ -178,7 +142,6 @@
     margin-bottom: 1rem;
   }
 
-  /* REVIEW CARD */
   .review-card {
     display: flex;
     gap: 1.25rem;
@@ -191,12 +154,8 @@
     align-items: flex-start;
   }
 
-  .review-card:hover {
-    border-color: var(--accent2);
-    background: var(--surface2);
-  }
+  .review-card:hover { border-color: var(--accent2); background: var(--surface2); }
 
-  /* COVER */
   .cover {
     width: 72px;
     height: 72px;
@@ -211,18 +170,9 @@
     font-size: 28px;
   }
 
-  .cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  /* REVIEW INFO */
-  .review-info {
-    flex: 1;
-    min-width: 0;
-  }
+  .review-info { flex: 1; min-width: 0; }
 
   .review-title {
     font-family: 'DM Serif Display', serif;
@@ -248,32 +198,17 @@
     margin-bottom: 8px;
   }
 
-  .review-meta span {
-    margin-right: 10px;
-  }
-
   .review-byline {
     font-size: 12px;
     color: var(--muted);
     margin-bottom: 6px;
   }
 
-  .review-publication {
-    color: var(--accent);
-    font-style: italic;
-  }
+  .review-publication { color: var(--accent); font-style: italic; }
 
-  .filter-link {
-    cursor: pointer;
-    transition: color 0.15s;
-  }
-
+  .filter-link { cursor: pointer; transition: color 0.15s; }
   .filter-link:hover { color: var(--accent); }
-
-  .review-byline .filter-link {
-    border-bottom: 1px dotted var(--muted);
-  }
-
+  .review-byline .filter-link { border-bottom: 1px dotted var(--muted); }
   .review-byline .filter-link:hover { border-bottom-color: var(--accent); }
 
   .filter-bar {
@@ -288,7 +223,6 @@
   }
 
   .filter-bar.active { display: flex; }
-
   .filter-bar strong { color: var(--accent); }
 
   .clear-filter {
@@ -301,20 +235,10 @@
 
   .clear-filter:hover { color: var(--text); }
 
-  .review-text {
-    font-size: 13px;
-    color: #aaa;
-    line-height: 1.6;
-  }
+  .review-text { font-size: 13px; color: #aaa; line-height: 1.6; }
 
-  /* EMPTY STATE */
-  .empty {
-    padding: 3rem 0;
-    color: var(--muted);
-    font-size: 14px;
-  }
+  .empty { padding: 3rem 0; color: var(--muted); font-size: 14px; }
 
-  /* FOOTER */
   footer {
     border-top: 1px solid var(--border);
     padding: 1.5rem 2rem;
@@ -352,9 +276,7 @@
   <main class="main-content" id="content"></main>
 </div>
 
-<footer>
-  &copy; Recenzje z Klanu
-</footer>
+<footer>&copy; Recenzje z Klanu</footer>
 
 <script>
 /* =============================================
@@ -369,9 +291,9 @@
    - publication: nazwa czasopisma / publikacji
    - text:        treść recenzji (ocenę wpisz na końcu tekstu)
 
-   Żeby dodać nową recenzję, skopiuj jeden blok { ... }
+   Żeby dodać nową recenzję, skopiuj jeden blok { ... },
    i wklej go przed ostatnim nawiasem ], zmieniając dane.
-   Pamiętaj o przecinku między blokami!
+   Pamiętaj o przecinku po każdym bloku oprócz ostatniego!
 ============================================= */
 const reviews = [
   {
@@ -382,7 +304,7 @@ const reviews = [
     author: "DJ Splif",
     publication: "Magazyn Klan nr 1 (1997)",
     text: "Rewelacyjna płyta. Prawdziwy rodzynek na polskim rynku hip-hopowym. Każdy numer na płycie niesie ze sobą ciekawą treść, złożoną ze świetnych rymów, które zaskakują swobodą ułożenia we frazie. Bolec pisząc najwyraźniej czuje się jak ryba w wodzie. Teksty są zarówno lekkie, jak i trudniejsze i ostre. Słowo wsparte jest solidnymi samplami i bardzo dobrym miksem. Ciekawe przeskoki od standardów (\"Lolita\", \"Mój czas\") do psychodelicznych wręcz trip-hopowych brzmień (\"Dym\", \"Branża\"). Bolec naprawdę się postarał, jeśli wziąć pod uwagę, że muzyka i słowa na krążku są wyłącznie jego roboty. Mam nadzieję, że ta płyta spodoba wam się tak bardzo, jak mi. Na pewno nie można jej pominąć. 4/5"
-  }
+  },
   {
     album: "12 groszy",
     artist: "Kazik",
@@ -390,8 +312,7 @@ const reviews = [
     cover: "https://panaes.github.io/recenzje/covers/kazik-12_groszy.jpg",
     author: "P.",
     publication: "Magazyn Klan nr 1 (1997)",
-    text: "Postaci Kazika nie trzeba chyba nikomu przedstawiać, to przecież artysta, którego nazywano pierwszym raperem Rzeczypospolitej. \"12
-groszy\" nie jest niestety (???) płytą hip-hopową, choć nie brakuje na niej elementów związanych z tą kulturą - scratche DJ Feel-X'a, zaskakującego swoim kunsztem (dlaczego nie widać tego na koncertach Kalibra 44?). Hip-hopowców z krwi i kości irytować będą z pewnością rock'n'rollowe piosenki czy pełna feelingu gra Mazzola. Gdyby \"Klan\" nie był gazetą hip-hopową \"12 Groszy\" na pewno dostałoby piątkę, a tak tylko 3,5."
+    text: "Postaci Kazika nie trzeba chyba nikomu przedstawiać, to przecież artysta, którego nazywano pierwszym raperem Rzeczypospolitej. \"12 groszy\" nie jest niestety (???) płytą hip-hopową, choć nie brakuje na niej elementów związanych z tą kulturą - scratche DJ Feel-X'a, zaskakującego swoim kunsztem (dlaczego nie widać tego na koncertach Kalibra 44?). Hip-hopowców z krwi i kości irytować będą z pewnością rock'n'rollowe piosenki czy pełna feelingu gra Mazzola. Gdyby \"Klan\" nie był gazetą hip-hopową \"12 Groszy\" na pewno dostałoby piątkę, a tak tylko 3,5."
   }
 ];
 
@@ -433,8 +354,7 @@ function filterAndRender() {
       if (activeFilter.type === 'publication') return r.publication === activeFilter.value;
       if (activeFilter.type === 'artist') return r.artist === activeFilter.value;
     }
-    return r.album.toLowerCase().includes(q) ||
-      r.artist.toLowerCase().includes(q);
+    return r.album.toLowerCase().includes(q) || r.artist.toLowerCase().includes(q);
   });
   render();
 }
@@ -478,7 +398,7 @@ function render() {
             <div class="review-title">${r.album}</div>
             <div class="review-artist filter-link" onclick="setFilter('artist', '${r.artist}')">${r.artist}</div>
             <div class="review-meta"><span>${r.year}</span></div>
-            ${(r.author || r.publication) ? `<div class="review-byline">${r.author ? `<span class="filter-link" onclick="setFilter('author', '${r.author.replace(/'/g, "\'")}')"> ${r.author}</span>` : ''}${r.author && r.publication ? ' &mdash; ' : ''}${r.publication ? `<span class="review-publication filter-link" onclick="setFilter('publication', '${r.publication.replace(/'/g, "\'")}')"> ${r.publication}</span>` : ''}</div>` : ''}
+            ${(r.author || r.publication) ? `<div class="review-byline">${r.author ? `<span class="filter-link" onclick="setFilter('author', '${r.author.replace(/'/g, "\\'")}')"> ${r.author}</span>` : ''}${r.author && r.publication ? ' &mdash; ' : ''}${r.publication ? `<span class="review-publication filter-link" onclick="setFilter('publication', '${r.publication.replace(/'/g, "\\'")}')"> ${r.publication}</span>` : ''}</div>` : ''}
             ${r.text ? `<div class="review-text">${r.text}</div>` : ''}
           </div>
         </article>
