@@ -421,7 +421,7 @@ function filterAndRender() {
       if (activeFilter.type === 'publication') return r.publication === activeFilter.value;
       if (activeFilter.type === 'artist') return r.artist === activeFilter.value;
     }
-    if (activeLetter) return activeLetter === 'KOMPILACJE' ? r.compilation === true : getKey(r.artist) === activeLetter;
+    if (activeLetter) return activeLetter === 'KOMPILACJE' ? r.compilation === true : (!r.compilation && getKey(r.artist) === activeLetter);
     if (q) return r.album.toLowerCase().includes(q) || r.artist.toLowerCase().includes(q);
     return false;
   });
