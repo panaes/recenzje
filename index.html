@@ -51,21 +51,10 @@
 
   header h1 span { color: var(--accent); }
 
-  .header-meta {
-    font-size: 13px;
-    color: var(--muted);
-    text-align: right;
-  }
+  .header-meta { font-size: 13px; color: var(--muted); text-align: right; }
+  .header-meta strong { color: var(--text); font-weight: 500; }
 
-  .header-meta strong {
-    color: var(--text);
-    font-weight: 500;
-  }
-
-  .search-wrap {
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--border);
-  }
+  .search-wrap { padding: 1.5rem 2rem; border-bottom: 1px solid var(--border); }
 
   .search-wrap input {
     width: 100%;
@@ -177,25 +166,9 @@
     margin-bottom: 2px;
   }
 
-  .review-artist {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-
-  .review-meta {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-
-  .review-byline {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-
+  .review-artist { font-size: 13px; font-weight: 500; color: var(--accent); margin-bottom: 4px; }
+  .review-meta { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .review-byline { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
   .review-publication { color: var(--accent); font-style: italic; }
 
   .filter-link { cursor: pointer; transition: color 0.15s; }
@@ -231,12 +204,9 @@
   .clear-filter:hover { color: var(--text); }
 
   .review-text { font-size: 13px; color: #aaa; line-height: 1.6; }
-
   .empty { padding: 0; color: var(--muted); font-size: 14px; }
 
-  .recent-covers {
-    padding: 0 0 1.5rem 0;
-  }
+  .recent-covers { padding: 0 0 1.5rem 0; }
 
   .recent-covers h3 {
     font-size: 11px;
@@ -247,11 +217,7 @@
     margin-bottom: 1rem;
   }
 
-  .recent-grid {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  .recent-grid { display: flex; gap: 12px; flex-wrap: wrap; }
 
   .recent-cover {
     width: clamp(60px, 15vw, 80px);
@@ -269,17 +235,8 @@
     flex-shrink: 0;
   }
 
-  .recent-cover:hover {
-    border-color: var(--accent);
-    transform: scale(1.04);
-  }
-
-  .recent-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+  .recent-cover:hover { border-color: var(--accent); transform: scale(1.04); }
+  .recent-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   .add-form-toggle {
     display: block;
@@ -323,12 +280,7 @@
     margin-bottom: 12px;
   }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
+  .form-field { display: flex; flex-direction: column; gap: 4px; }
   .form-field.full { grid-column: 1 / -1; }
 
   .form-field label {
@@ -355,9 +307,7 @@
 
   .form-field input:focus,
   .form-field textarea:focus { border-color: var(--accent2); }
-
   .form-field textarea { resize: vertical; min-height: 100px; }
-
   .form-field input::placeholder,
   .form-field textarea::placeholder { color: #444; }
 
@@ -373,11 +323,7 @@
 
   .form-compilation input { width: auto; }
 
-  .form-actions {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 1rem;
-  }
+  .form-actions { display: flex; gap: 10px; margin-bottom: 1rem; }
 
   .btn-generate {
     padding: 8px 20px;
@@ -448,11 +394,6 @@
 
   .btn-copy:hover { background: var(--surface); }
 
-  @media (max-width: 600px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .add-form { margin: 1rem; }
-  }
-
   footer {
     border-top: 1px solid var(--border);
     padding: 1.5rem 2rem;
@@ -466,6 +407,8 @@
     .alpha-bar { padding: 0.5rem 1rem; }
     .main-content { padding: 1.5rem 1rem; }
     .cover { width: 56px; height: 56px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .add-form { margin: 1rem; }
   }
 </style>
 </head>
@@ -574,8 +517,8 @@ const reviews = [
     author: "P.",
     publication: "Magazyn Klan nr 1 (1997)",
     text: "Postaci Kazika nie trzeba chyba nikomu przedstawiać, to przecież artysta, którego nazywano pierwszym raperem Rzeczypospolitej. \"12 groszy\" nie jest niestety (???) płytą hip-hopową, choć nie brakuje na niej elementów związanych z tą kulturą - scratche DJ Feel-X'a, zaskakującego swoim kunsztem (dlaczego nie widać tego na koncertach Kalibra 44?). Hip-hopowców z krwi i kości irytować będą z pewnością rock'n'rollowe piosenki czy pełna feelingu gra Mazzola. Gdyby \"Klan\" nie był gazetą hip-hopową \"12 Groszy\" na pewno dostałoby piątkę, a tak tylko 3,5."
-  }
-  ,{
+  },
+  {
     album: "Centrum",
     artist: "Wzgórze Ya-Pa-3",
     year: 1997,
@@ -583,8 +526,8 @@ const reviews = [
     author: "T?mon",
     publication: "Magazyn Klan nr 1 (1997)",
     text: "Album \"Wzgórze Ya-Pa-3\" był pierwszą oficjalnie wydaną płytą hip-hopową w naszym kraju. Na drugi krążek Wzgórza czekali więc wszyscy fani polskiego hip-hopu. Zespół, zdając sobie pewnie sprawę z odpowiedzialności, zdecydował się na zmianę stylu rymowania - nie mówią już o imprezach, a głównie o swojej wyższości jako MC. Po drodze stracili jednak całą autentyczność, w dodatku nie rymują wcale tak dobrze, jak sami mówią. Bardzo często słowa nie znaczą zupełnie nic, razi przestawianie akcentów w wyrazach. Płytę tę trzeba mieć - utwór \"Język polski\", połączenie sił Kalibra 44, Wzgórza i przyjaciół (m.in. Jajonasz i Radoskór), to najlepszy kawałek wydany w tym kraju. Mimo plusów i minusów jest to jak na razie najlepsza polska płyta hip-hopowa. 4,3/5"
-  }
-  ,{
+  },
+  {
     album: "Polski Rap. Zakazane Piosenki Yo. 3",
     artist: "Kompilacja",
     year: 1997,
@@ -603,7 +546,7 @@ const reviews = [
 const now = new Date();
 const dateStr = now.toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' }) + ', ' + now.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit', hour12: false });
 document.getElementById('last-update').textContent = dateStr;
-document.getElementById('footer-year').textContent = new Date().getFullYear();
+document.getElementById('footer-year').textContent = now.getFullYear();
 
 const PL_ALPHA = ['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','KOMPILACJE'];
 
@@ -623,142 +566,14 @@ function setFilter(type, value) {
   document.getElementById('filter-bar').classList.add('active');
   document.getElementById('filter-label').textContent = value;
   document.getElementById('search').value = '';
-  function toggleForm() {
-  const form = document.getElementById('add-form');
-  form.classList.toggle('open');
-}
-
-function clearForm() {
-  ['f-artist','f-album','f-year','f-cover','f-author','f-publication','f-text'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('f-compilation').checked = false;
-  document.getElementById('form-output').classList.remove('visible');
-}
-
-function generateCode() {
-  const artist = document.getElementById('f-artist').value.trim();
-  const album = document.getElementById('f-album').value.trim();
-  const year = document.getElementById('f-year').value.trim();
-  const cover = document.getElementById('f-cover').value.trim();
-  const author = document.getElementById('f-author').value.trim();
-  const publication = document.getElementById('f-publication').value.trim();
-  const text = document.getElementById('f-text').value.trim();
-  const compilation = document.getElementById('f-compilation').checked;
-
-  if (!artist || !album || !year) {
-    alert('Wypełnij przynajmniej: wykonawca, album i rok.');
-    return;
-  }
-
-  const escape = s => s.replace(/\/g, '\\').replace(/"/g, '\"');
-  const baseUrl = 'https://panaes.github.io/recenzjeklan/covers/';
-
-  let code = '  ,{
-';
-  code += '    album: "' + escape(album) + '",
-';
-  code += '    artist: "' + escape(artist) + '",
-';
-  code += '    year: ' + year + ',
-';
-  if (compilation) code += '    compilation: true,
-';
-  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",
-';
-  if (author) code += '    author: "' + escape(author) + '",
-';
-  if (publication) code += '    publication: "' + escape(publication) + '",
-';
-  if (text) code += '    text: "' + escape(text) + '"
-';
-  code += '  }';
-
-  document.getElementById('form-code').textContent = code;
-  document.getElementById('form-output').classList.add('visible');
-}
-
-function copyCode() {
-  const code = document.getElementById('form-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Skopiowano!';
-    setTimeout(() => btn.textContent = 'Kopiuj do schowka', 2000);
-  });
-}
-
-filterAndRender();
+  filterAndRender();
 }
 
 function clearFilter() {
   activeFilter = null;
   activeLetter = null;
   document.getElementById('filter-bar').classList.remove('active');
-  function toggleForm() {
-  const form = document.getElementById('add-form');
-  form.classList.toggle('open');
-}
-
-function clearForm() {
-  ['f-artist','f-album','f-year','f-cover','f-author','f-publication','f-text'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('f-compilation').checked = false;
-  document.getElementById('form-output').classList.remove('visible');
-}
-
-function generateCode() {
-  const artist = document.getElementById('f-artist').value.trim();
-  const album = document.getElementById('f-album').value.trim();
-  const year = document.getElementById('f-year').value.trim();
-  const cover = document.getElementById('f-cover').value.trim();
-  const author = document.getElementById('f-author').value.trim();
-  const publication = document.getElementById('f-publication').value.trim();
-  const text = document.getElementById('f-text').value.trim();
-  const compilation = document.getElementById('f-compilation').checked;
-
-  if (!artist || !album || !year) {
-    alert('Wypełnij przynajmniej: wykonawca, album i rok.');
-    return;
-  }
-
-  const escape = s => s.replace(/\/g, '\\').replace(/"/g, '\"');
-  const baseUrl = 'https://panaes.github.io/recenzjeklan/covers/';
-
-  let code = '  ,{
-';
-  code += '    album: "' + escape(album) + '",
-';
-  code += '    artist: "' + escape(artist) + '",
-';
-  code += '    year: ' + year + ',
-';
-  if (compilation) code += '    compilation: true,
-';
-  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",
-';
-  if (author) code += '    author: "' + escape(author) + '",
-';
-  if (publication) code += '    publication: "' + escape(publication) + '",
-';
-  if (text) code += '    text: "' + escape(text) + '"
-';
-  code += '  }';
-
-  document.getElementById('form-code').textContent = code;
-  document.getElementById('form-output').classList.add('visible');
-}
-
-function copyCode() {
-  const code = document.getElementById('form-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Skopiowano!';
-    setTimeout(() => btn.textContent = 'Kopiuj do schowka', 2000);
-  });
-}
-
-filterAndRender();
+  filterAndRender();
 }
 
 function filterAndRender() {
@@ -794,9 +609,9 @@ function render() {
 
   sidebar.innerHTML = PL_ALPHA.map(l => {
     const has = allKeys.has(l);
-    const label = l === '0-9' ? '0–9' : l;
+    const label = l === '0-9' ? '0\u20139' : l;
     const wide = l === 'KOMPILACJE' ? ' style="width:auto;padding:0 8px;"' : '';
-    return `<div class="alpha-btn ${has ? 'has-items' : 'disabled'}${activeLetter === l ? ' active' : ''}"${wide} ${has ? `onclick="selectLetter('${l}')"` : ''}>${label}</div>`;
+    return '<div class="alpha-btn ' + (has ? 'has-items' : 'disabled') + (activeLetter === l ? ' active' : '') + '"' + wide + ' ' + (has ? 'onclick="selectLetter(\'' + l + '\')"' : '') + '>' + label + '</div>';
   }).join('');
 
   if (filtered.length === 0) {
@@ -807,7 +622,7 @@ function render() {
       recent.forEach(r => {
         const div = document.createElement('div');
         div.className = 'recent-cover';
-        div.title = r.artist + ' — ' + r.album;
+        div.title = r.artist + ' \u2014 ' + r.album;
         div.onclick = () => selectLetter(r.compilation ? 'KOMPILACJE' : getKey(r.artist));
         if (r.cover) {
           const img = document.createElement('img');
@@ -815,7 +630,7 @@ function render() {
           img.alt = r.album;
           div.appendChild(img);
         } else {
-          div.textContent = '🎵';
+          div.textContent = '\uD83C\uDFB5';
         }
         grid.appendChild(div);
       });
@@ -859,71 +674,7 @@ function goHome() {
   document.getElementById('filter-bar').classList.remove('active');
   document.getElementById('search').value = '';
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
-  function toggleForm() {
-  const form = document.getElementById('add-form');
-  form.classList.toggle('open');
-}
-
-function clearForm() {
-  ['f-artist','f-album','f-year','f-cover','f-author','f-publication','f-text'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('f-compilation').checked = false;
-  document.getElementById('form-output').classList.remove('visible');
-}
-
-function generateCode() {
-  const artist = document.getElementById('f-artist').value.trim();
-  const album = document.getElementById('f-album').value.trim();
-  const year = document.getElementById('f-year').value.trim();
-  const cover = document.getElementById('f-cover').value.trim();
-  const author = document.getElementById('f-author').value.trim();
-  const publication = document.getElementById('f-publication').value.trim();
-  const text = document.getElementById('f-text').value.trim();
-  const compilation = document.getElementById('f-compilation').checked;
-
-  if (!artist || !album || !year) {
-    alert('Wypełnij przynajmniej: wykonawca, album i rok.');
-    return;
-  }
-
-  const escape = s => s.replace(/\/g, '\\').replace(/"/g, '\"');
-  const baseUrl = 'https://panaes.github.io/recenzjeklan/covers/';
-
-  let code = '  ,{
-';
-  code += '    album: "' + escape(album) + '",
-';
-  code += '    artist: "' + escape(artist) + '",
-';
-  code += '    year: ' + year + ',
-';
-  if (compilation) code += '    compilation: true,
-';
-  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",
-';
-  if (author) code += '    author: "' + escape(author) + '",
-';
-  if (publication) code += '    publication: "' + escape(publication) + '",
-';
-  if (text) code += '    text: "' + escape(text) + '"
-';
-  code += '  }';
-
-  document.getElementById('form-code').textContent = code;
-  document.getElementById('form-output').classList.add('visible');
-}
-
-function copyCode() {
-  const code = document.getElementById('form-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Skopiowano!';
-    setTimeout(() => btn.textContent = 'Kopiuj do schowka', 2000);
-  });
-}
-
-filterAndRender();
+  filterAndRender();
 }
 
 function selectLetter(l) {
@@ -937,76 +688,11 @@ function selectLetter(l) {
   }
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
   if (activeLetter) event.currentTarget.classList.add('active');
-  function toggleForm() {
-  const form = document.getElementById('add-form');
-  form.classList.toggle('open');
-}
-
-function clearForm() {
-  ['f-artist','f-album','f-year','f-cover','f-author','f-publication','f-text'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('f-compilation').checked = false;
-  document.getElementById('form-output').classList.remove('visible');
-}
-
-function generateCode() {
-  const artist = document.getElementById('f-artist').value.trim();
-  const album = document.getElementById('f-album').value.trim();
-  const year = document.getElementById('f-year').value.trim();
-  const cover = document.getElementById('f-cover').value.trim();
-  const author = document.getElementById('f-author').value.trim();
-  const publication = document.getElementById('f-publication').value.trim();
-  const text = document.getElementById('f-text').value.trim();
-  const compilation = document.getElementById('f-compilation').checked;
-
-  if (!artist || !album || !year) {
-    alert('Wypełnij przynajmniej: wykonawca, album i rok.');
-    return;
-  }
-
-  const escape = s => s.replace(/\/g, '\\').replace(/"/g, '\"');
-  const baseUrl = 'https://panaes.github.io/recenzjeklan/covers/';
-
-  let code = '  ,{
-';
-  code += '    album: "' + escape(album) + '",
-';
-  code += '    artist: "' + escape(artist) + '",
-';
-  code += '    year: ' + year + ',
-';
-  if (compilation) code += '    compilation: true,
-';
-  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",
-';
-  if (author) code += '    author: "' + escape(author) + '",
-';
-  if (publication) code += '    publication: "' + escape(publication) + '",
-';
-  if (text) code += '    text: "' + escape(text) + '"
-';
-  code += '  }';
-
-  document.getElementById('form-code').textContent = code;
-  document.getElementById('form-output').classList.add('visible');
-}
-
-function copyCode() {
-  const code = document.getElementById('form-code').textContent;
-  navigator.clipboard.writeText(code).then(() => {
-    const btn = document.querySelector('.btn-copy');
-    btn.textContent = 'Skopiowano!';
-    setTimeout(() => btn.textContent = 'Kopiuj do schowka', 2000);
-  });
-}
-
-filterAndRender();
+  filterAndRender();
 }
 
 function toggleForm() {
-  const form = document.getElementById('add-form');
-  form.classList.toggle('open');
+  document.getElementById('add-form').classList.toggle('open');
 }
 
 function clearForm() {
@@ -1032,27 +718,18 @@ function generateCode() {
     return;
   }
 
-  const escape = s => s.replace(/\/g, '\\').replace(/"/g, '\"');
+  const escape = s => s.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
   const baseUrl = 'https://panaes.github.io/recenzjeklan/covers/';
 
-  let code = '  ,{
-';
-  code += '    album: "' + escape(album) + '",
-';
-  code += '    artist: "' + escape(artist) + '",
-';
-  code += '    year: ' + year + ',
-';
-  if (compilation) code += '    compilation: true,
-';
-  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",
-';
-  if (author) code += '    author: "' + escape(author) + '",
-';
-  if (publication) code += '    publication: "' + escape(publication) + '",
-';
-  if (text) code += '    text: "' + escape(text) + '"
-';
+  let code = '  ,{\n';
+  code += '    album: "' + escape(album) + '",\n';
+  code += '    artist: "' + escape(artist) + '",\n';
+  code += '    year: ' + year + ',\n';
+  if (compilation) code += '    compilation: true,\n';
+  code += '    cover: "' + (cover ? baseUrl + cover : '') + '",\n';
+  if (author) code += '    author: "' + escape(author) + '",\n';
+  if (publication) code += '    publication: "' + escape(publication) + '",\n';
+  if (text) code += '    text: "' + escape(text) + '"\n';
   code += '  }';
 
   document.getElementById('form-code').textContent = code;
