@@ -455,7 +455,7 @@ function render() {
     if (!activeLetter && !activeFilter && !document.getElementById('search').value.trim()) {
       const recent = [...reviews].reverse().slice(0, 10);
       const coversHTML = recent.map(r => `
-        <div class="recent-cover" onclick="selectLetter('${getKey(r.artist)}')" title="${r.artist} — ${r.album}">
+        <div class="recent-cover" onclick="selectLetter('${r.compilation ? 'KOMPILACJE' : getKey(r.artist)}')" title="${r.artist} — ${r.album}">
           ${r.cover ? `<img src="${r.cover}" alt="${r.album}">` : '🎵'}
         </div>
       `).join('');
