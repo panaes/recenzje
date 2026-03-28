@@ -267,11 +267,16 @@
 
   .filter-link {
     cursor: pointer;
-    border-bottom: 1px dotted var(--muted);
     transition: color 0.15s;
   }
 
-  .filter-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .filter-link:hover { color: var(--accent); }
+
+  .review-byline .filter-link {
+    border-bottom: 1px dotted var(--muted);
+  }
+
+  .review-byline .filter-link:hover { border-bottom-color: var(--accent); }
 
   .filter-bar {
     display: none;
@@ -423,6 +428,7 @@ function filterAndRender() {
     if (activeFilter) {
       if (activeFilter.type === 'author') return r.author === activeFilter.value;
       if (activeFilter.type === 'publication') return r.publication === activeFilter.value;
+      if (activeFilter.type === 'artist') return r.artist === activeFilter.value;
     }
     return r.album.toLowerCase().includes(q) ||
       r.artist.toLowerCase().includes(q);
@@ -467,7 +473,7 @@ function render() {
           </div>
           <div class="review-info">
             <div class="review-title">${r.album}</div>
-            <div class="review-artist">${r.artist}</div>
+            <div class="review-artist filter-link" onclick="setFilter('artist', '${r.artist}')">${r.artist}</div>
             <div class="review-meta"><span>${r.year}</span></div>
             ${(r.author || r.publication) ? `<div class="review-byline">${r.author ? `<span class="filter-link" onclick="setFilter('author', '${r.author.replace(/'/g, "\'")}')"> ${r.author}</span>` : ''}${r.author && r.publication ? ' &mdash; ' : ''}${r.publication ? `<span class="review-publication filter-link" onclick="setFilter('publication', '${r.publication.replace(/'/g, "\'")}')"> ${r.publication}</span>` : ''}</div>` : ''}
             ${r.text ? `<div class="review-text">${r.text}</div>` : ''}
