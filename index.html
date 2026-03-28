@@ -454,12 +454,28 @@ function render() {
   if (filtered.length === 0) {
     if (!activeLetter && !activeFilter && !document.getElementById('search').value.trim()) {
       const recent = [...reviews].reverse().slice(0, 10);
-      const coversHTML = recent.map(r => `
-        <div class="recent-cover" onclick="selectLetter('${r.compilation ? 'KOMPILACJE' : getKey(r.artist)}')" title="${r.artist} — ${r.album}">
-          ${r.cover ? `<img src="${r.cover}" alt="${r.album}">` : '🎵'}
-        </div>
-      `).join('');
-      content.innerHTML = `<div class="recent-covers"><h3>Ostatnio dodane</h3><div class="recent-grid">${coversHTML}</div></div>`;
+      const grid = document.createElement('div');
+      grid.className = 'recent-grid';
+      recent.forEach(r => {
+        const div = document.createElement('div');
+        div.className = 'recent-cover';
+        div.title = r.artist + ' — ' + r.album;
+        div.onclick = () => selectLetter(r.compilation ? 'KOMPILACJE' : getKey(r.artist));
+        if (r.cover) {
+          const img = document.createElement('img');
+          img.src = r.cover;
+          img.alt = r.album;
+          div.appendChild(img);
+        } else {
+          div.textContent = '🎵';
+        }
+        grid.appendChild(div);
+      });
+      const wrap = document.createElement('div');
+      wrap.className = 'recent-covers';
+      wrap.innerHTML = '<h3>Ostatnio dodane</h3>';
+      wrap.appendChild(grid);
+      content.appendChild(wrap);
     } else {
       content.innerHTML = '<p class="empty">Brak recenzji pasujących do wyszukiwania.</p>';
     }
