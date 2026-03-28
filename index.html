@@ -252,8 +252,6 @@
     margin-right: 10px;
   }
 
-
-
   .review-byline {
     font-size: 12px;
     color: var(--muted);
@@ -309,7 +307,6 @@
     line-height: 1.6;
   }
 
-
   /* EMPTY STATE */
   .empty {
     padding: 3rem 0;
@@ -356,23 +353,22 @@
 </div>
 
 <footer>
-  &copy; Moje recenzje muzyczne &mdash; zaktualizowano <span id="update-date"></span>
+  &copy; Recenzje z Klanu
 </footer>
 
 <script>
 /* =============================================
    TWOJE RECENZJE — edytuj tę tablicę!
-   
+
    Każda recenzja to obiekt z polami:
-   - album:    tytuł albumu (wymagane)
-   - artist:   wykonawca (wymagane)
-   - year:     rok wydania (wymagane)
-   - genre:    gatunek, np. "Rock", "Jazz", "Elektronika"
-   - rating:   ocena od 1 do 5
-   - cover:    URL okładki (możesz wkleić link z internetu)
-               lub "" jeśli nie masz okładki
-   - text:     treść recenzji
-   
+   - album:       tytuł albumu (wymagane)
+   - artist:      wykonawca (wymagane)
+   - year:        rok wydania (wymagane)
+   - cover:       URL okładki lub "" jeśli brak
+   - author:      autor recenzji
+   - publication: nazwa czasopisma / publikacji
+   - text:        treść recenzji (ocenę wpisz na końcu tekstu)
+
    Żeby dodać nową recenzję, skopiuj jeden blok { ... }
    i wklej go przed ostatnim nawiasem ], zmieniając dane.
    Pamiętaj o przecinku między blokami!
@@ -382,7 +378,7 @@ const reviews = [
     album: "Żeby było miło",
     artist: "Bolec",
     year: 1997,
-    cover: "https://panaes.github.io/recenzje/covers/bolec-zeby_bylo_milo.jpg",  // wklej tu URL okładki, np. "https://panaes.github.io/recenzje/covers/okladka.jpg"
+    cover: "https://panaes.github.io/recenzje/covers/bolec-zeby_bylo_milo.jpg",
     author: "DJ Splif",
     publication: "Magazyn Klan nr 1 (1997)",
     text: "Rewelacyjna płyta. Prawdziwy rodzynek na polskim rynku hip-hopowym. Każdy numer na płycie niesie ze sobą ciekawą treść, złożoną ze świetnych rymów, które zaskakują swobodą ułożenia we frazie. Bolec pisząc najwyraźniej czuje się jak ryba w wodzie. Teksty są zarówno lekkie, jak i trudniejsze i ostre. Słowo wsparte jest solidnymi samplami i bardzo dobrym miksem. Ciekawe przeskoki od standardów (\"Lolita\", \"Mój czas\") do psychodelicznych wręcz trip-hopowych brzmień (\"Dym\", \"Branża\"). Bolec naprawdę się postarał, jeśli wziąć pod uwagę, że muzyka i słowa na krążku są wyłącznie jego roboty. Mam nadzieję, że ta płyta spodoba wam się tak bardzo, jak mi. Na pewno nie można jej pominąć. 4/5"
@@ -395,15 +391,12 @@ const reviews = [
 
 const dateStr = new Date().toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
 document.getElementById('last-update').textContent = dateStr;
-if(document.getElementById('update-date')) document.getElementById('update-date').textContent = dateStr;
 
 const PL_ALPHA = 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ'.split('');
 
 function getKey(str) {
   return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')[0].toUpperCase();
 }
-
-
 
 let filtered = [];
 let activeFilter = null;
