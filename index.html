@@ -252,13 +252,7 @@
     margin-right: 10px;
   }
 
-  .rating {
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--accent);
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
+
 
   .review-byline {
     font-size: 12px;
@@ -352,6 +346,7 @@
    - artist:   wykonawca (wymagane)
    - year:     rok wydania (wymagane)
    - genre:    gatunek, np. "Rock", "Jazz", "Elektronika"
+   - rating:   ocena od 1 do 5
    - cover:    URL okładki (możesz wkleić link z internetu)
                lub "" jeśli nie masz okładki
    - text:     treść recenzji
@@ -366,11 +361,10 @@ const reviews = [
     artist: "Bolec",
     year: 1997,
     genre: "Hip-Hop",
-    rating: "4/5",
     cover: "https://panaes.github.io/recenzje/covers/bolec-zeby_bylo_milo.jpg",  // wklej tu URL okładki, np. "https://panaes.github.io/recenzje/covers/okladka.jpg"
-    ,
-    text: "Rewelacyjna płyta. Prawdziwy rodzynek na polskim rynku hip-hopowym. Każdy numer na płycie niesie ze sobą ciekawą treść, złożoną ze świetnych rymów, które zaskakują swobodą ułożenia we frazie. Bolec pisząc najwyraźniej czuje się jak ryba w wodzie. Teksty są zarówno lekkie, jak i trudniejsze i ostre. Słowo wsparte jest solidnymi samplami i bardzo dobrym miksem. Ciekawe przeskoki od standardów (\"Lolita\", \"Mój czas\") do psychodelicznych wręcz trip-hop'owych brzmień (\"Dym\", \"Branża\"). Bolec naprawdę się postarał, jeśli wziąć pod uwagę, że muzyka i słowa na krążku są wyłącznie jego roboty. Mam nadzieję, że ta płyta spodoba wam się tak bardzo, jak mi. Na pewno nie można jej pominąć."
-    author: "DJ Splif" (\publication: "Magazyn Klan nr 1, 1997)\",
+    author: "DJ Splif",
+    publication: "Magazyn Klan nr 1 (1997)",
+    text: "Rewelacyjna płyta. Prawdziwy rodzynek na polskim rynku hip-hopowym. Każdy numer na płycie niesie ze sobą ciekawą treść, złożoną ze świetnych rymów, które zaskakują swobodą ułożenia we frazie."
   }
 ];
 
@@ -442,7 +436,6 @@ function render() {
               <span>${r.year}</span>
               ${r.genre ? `<span class="genre-tag">${r.genre}</span>` : ''}
             </div>
-            ${r.rating !== undefined && r.rating !== '' ? `<div class="rating">${r.rating}</div>` : ''}
             ${(r.author || r.publication) ? `<div class="review-byline">${r.author ? `<span>${r.author}</span>` : ''}${r.author && r.publication ? ' &mdash; ' : ''}${r.publication ? `<span class="review-publication">${r.publication}</span>` : ''}</div>` : ''}
             ${r.text ? `<div class="review-text">${r.text}</div>` : ''}
           </div>
