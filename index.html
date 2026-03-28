@@ -85,40 +85,32 @@
   .search-wrap input:focus { border-color: var(--accent2); }
   .search-wrap input::placeholder { color: var(--muted); }
 
-  .layout { display: flex; position: relative; }
+  .layout { display: block; }
 
-  .alpha-sidebar {
-    width: 52px;
-    flex-shrink: 0;
+  .alpha-bar {
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
     position: sticky;
     top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1.5rem 0;
-    gap: 2px;
-    scrollbar-width: none;
+    z-index: 100;
   }
-
-  .alpha-sidebar::-webkit-scrollbar { display: none; }
 
   .alpha-btn {
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.05em;
-    width: 32px;
+    display: inline-block;
+    width: 28px;
     height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 24px;
+    text-align: center;
     border-radius: 4px;
     cursor: pointer;
     color: var(--muted);
     transition: all 0.15s;
     user-select: none;
+    margin: 1px;
   }
 
   .alpha-btn.has-items { color: var(--text); }
@@ -126,7 +118,7 @@
   .alpha-btn.active { background: var(--accent); color: #000; }
   .alpha-btn.disabled { color: #333; cursor: default; font-size: 10px; }
 
-  .main-content { flex: 1; padding: 2rem; min-width: 0; }
+  .main-content { padding: 2rem; min-width: 0; }
 
   .section { margin-bottom: 3rem; scroll-margin-top: 1rem; }
 
@@ -237,7 +229,7 @@
 
   .review-text { font-size: 13px; color: #aaa; line-height: 1.6; }
 
-  .empty { padding: 3rem 0; color: var(--muted); font-size: 14px; }
+  .empty { padding: 0; color: var(--muted); font-size: 14px; }
 
   footer {
     border-top: 1px solid var(--border);
@@ -248,9 +240,8 @@
   }
 
   @media (max-width: 600px) {
-    .alpha-sidebar { width: 36px; }
-    .alpha-btn { width: 24px; font-size: 10px; }
     header { padding: 2rem 1rem 1.5rem; }
+    .alpha-bar { padding: 0.5rem 1rem; }
     .main-content { padding: 1.5rem 1rem; }
     .cover { width: 56px; height: 56px; }
   }
@@ -270,9 +261,9 @@
   <input type="text" id="search" placeholder="Szukaj wykonawcy lub albumu..." oninput="filterAndRender()" />
 </div>
 
+<div class="alpha-bar" id="sidebar"></div>
 <div class="filter-bar" id="filter-bar">Filtrujesz po: <strong id="filter-label"></strong><span class="clear-filter" onclick="clearFilter()">Wyczyść filtr</span></div>
 <div class="layout">
-  <nav class="alpha-sidebar" id="sidebar"></nav>
   <main class="main-content" id="content"></main>
 </div>
 
@@ -323,17 +314,21 @@ const reviews = [
 const dateStr = new Date().toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' });
 document.getElementById('last-update').textContent = dateStr;
 
-const PL_ALPHA = 'AĄBCĆDEĘFGHIJKLŁMNŃOÓPQRSŚTUVWXYZŹŻ'.split('');
+const PL_ALPHA = ['0-9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
 function getKey(str) {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')[0].toUpperCase();
+  const first = str.trim()[0];
+  if (/[0-9]/.test(first)) return '0-9';
+  return first.normalize('NFD').replace(/[\u0300-\u036f]/g, '')[0].toUpperCase();
 }
 
 let filtered = [];
 let activeFilter = null;
+let activeLetter = null;
 
 function setFilter(type, value) {
   activeFilter = { type, value };
+  activeLetter = null;
   document.getElementById('filter-bar').classList.add('active');
   document.getElementById('filter-label').textContent = value;
   document.getElementById('search').value = '';
@@ -342,6 +337,7 @@ function setFilter(type, value) {
 
 function clearFilter() {
   activeFilter = null;
+  activeLetter = null;
   document.getElementById('filter-bar').classList.remove('active');
   filterAndRender();
 }
@@ -354,7 +350,9 @@ function filterAndRender() {
       if (activeFilter.type === 'publication') return r.publication === activeFilter.value;
       if (activeFilter.type === 'artist') return r.artist === activeFilter.value;
     }
-    return r.album.toLowerCase().includes(q) || r.artist.toLowerCase().includes(q);
+    if (activeLetter) return getKey(r.artist) === activeLetter;
+    if (q) return r.album.toLowerCase().includes(q) || r.artist.toLowerCase().includes(q);
+    return false;
   });
   render();
 }
@@ -373,15 +371,20 @@ function render() {
   });
   Object.keys(grouped).forEach(k => grouped[k].sort((a, b) => a.artist.localeCompare(b.artist, 'pl')));
 
-  const usedKeys = new Set(Object.keys(grouped));
+  const allKeys = new Set(reviews.map(r => getKey(r.artist)));
 
   sidebar.innerHTML = PL_ALPHA.map(l => {
-    const has = usedKeys.has(l);
-    return `<div class="alpha-btn ${has ? 'has-items' : 'disabled'}" ${has ? `onclick="scrollTo('${l}')"` : ''}>${l}</div>`;
+    const has = allKeys.has(l);
+    const label = l === '0-9' ? '0–9' : l;
+    return `<div class="alpha-btn ${has ? 'has-items' : 'disabled'}${activeLetter === l ? ' active' : ''}" ${has ? `onclick="selectLetter('${l}')"` : ''}>${label}</div>`;
   }).join('');
 
   if (filtered.length === 0) {
-    content.innerHTML = '<p class="empty">Brak recenzji pasujących do wyszukiwania.</p>';
+    if (!activeLetter && !activeFilter && !document.getElementById('search').value.trim()) {
+      content.innerHTML = '<p class="empty">Wybierz literę z panelu po lewej lub wpisz frazę w wyszukiwarce.</p>';
+    } else {
+      content.innerHTML = '<p class="empty">Brak recenzji pasujących do wyszukiwania.</p>';
+    }
     return;
   }
 
@@ -407,12 +410,18 @@ function render() {
   `).join('');
 }
 
-function scrollTo(l) {
+function selectLetter(l) {
+  if (activeLetter === l) {
+    activeLetter = null;
+  } else {
+    activeLetter = l;
+    activeFilter = null;
+    document.getElementById('filter-bar').classList.remove('active');
+    document.getElementById('search').value = '';
+  }
   document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-  const el = document.getElementById('sec-' + l);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  setTimeout(() => document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active')), 1000);
+  if (activeLetter) event.currentTarget.classList.add('active');
+  filterAndRender();
 }
 
 filterAndRender();
